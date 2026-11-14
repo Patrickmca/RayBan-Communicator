@@ -1,0 +1,63 @@
+# XcodeGen spec. On a Mac: `brew install xcodegen && xcodegen generate`, then open GlassesAssistant.xcodeproj.
+name: GlassesAssistant
+
+options:
+  deploymentTarget:
+    iOS: "17.2"          # matches Meta's DAT sample apps
+  xcodeVersion: "26.4"   # DAT 1.0.x requires Xcode 26.4+ / Swift 6.3+
+
+configFiles:
+  Debug: Config/Shared.xcconfig
+  Release: Config/Shared.xcconfig
+
+packages:
+  MWDAT:
+    url: https://github.com/facebook/meta-wearables-dat-ios
+    exactVersion: 1.0.1
+
+targets:
+  GlassesAssistant:
+    type: application
+    platform: iOS
+    sources:
+      - path: GlassesAssistant/Sources
+      - path: GlassesAssistant/Resources
+    settings:
+      base:
+        INFOPLIST_FILE: GlassesAssistant/Support/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_ENTITLEMENTS: GlassesAssistant/Support/GlassesAssistant.entitlements
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
+        SWIFT_STRICT_CONCURRENCY: targeted
+        ENABLE_PREVIEWS: YES
+    dependencies:
+      - package: MWDAT
+        product: MWDATCore
+      - package: MWDAT
+        product: MWDATCamera
+
+  GlassesAssistantTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: GlassesAssistantTests
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_VERSION: "5.0"
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/GlassesAssistant.app/GlassesAssistant"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+    dependencies:
+      - target: GlassesAssistant
+
+schemes:
+  GlassesAssistant:
+    build:
+      targets:
+        GlassesAssistant: all
+        GlassesAssistantTests: [test]
+    test:
+      targets:
+        - GlassesAssistantTests

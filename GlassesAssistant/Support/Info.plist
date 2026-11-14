@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Glasses Assistant</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+
+	<!-- URL scheme Meta AI uses to call back after registration / permission prompts.
+	     Keep MWDAT > AppLinkURLScheme in sync with it. -->
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>glassesassistant</string>
+			</array>
+		</dict>
+	</array>
+
+	<!-- Begin Meta Wearables Device Access Toolkit section -->
+	<key>MWDAT</key>
+	<dict>
+		<key>AppLinkURLScheme</key>
+		<string>glassesassistant://</string>
+		<!-- Empty / unexpanded while using Developer Mode; set from Wearables Developer Center for release channels. -->
+		<key>MetaAppID</key>
+		<string>$(META_APP_ID)</string>
+		<key>ClientToken</key>
+		<string>$(CLIENT_TOKEN)</string>
+		<key>TeamID</key>
+		<string>$(DEVELOPMENT_TEAM)</string>
+	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>processing</string>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+		<string>external-accessory</string>
+		<string>audio</string>
+	</array>
+	<key>UISupportedExternalAccessoryProtocols</key>
+	<array>
+		<string>com.meta.ar.wearable</string>
+	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Glasses Assistant connects to your Meta AI glasses over Bluetooth.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>This lets your phone find and connect to your glasses over Wi-Fi.</string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_bonjour._tcp</string>
+	</array>
+	<!-- End Meta Wearables Device Access Toolkit section -->
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Glasses Assistant listens to your glasses' microphone so you can talk to the assistant.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Your speech is transcribed so it can be sent to the assistant.</string>
+
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>

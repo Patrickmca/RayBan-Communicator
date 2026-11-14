@@ -1,0 +1,16 @@
+// Edit these before building. See README.md → "Manual steps".
+
+// Your Apple Developer Team ID (Xcode → Settings → Accounts, or developer.apple.com → Membership).
+// The DAT SDK also reads it via Info.plist → MWDAT → TeamID.
+DEVELOPMENT_TEAM =
+
+// Must be unique to you and match the bundle ID registered in the Wearables Developer Center.
+PRODUCT_BUNDLE_IDENTIFIER = com.example.GlassesAssistant
+
+MARKETING_VERSION = 0.1.0
+CURRENT_PROJECT_VERSION = 1
+
+// Leave empty while using Developer Mode on your glasses: the SDK then skips attestation.
+// For release channels / production, paste the values from the Wearables Developer Center.
+META_APP_ID =
+CLIENT_TOKEN =
